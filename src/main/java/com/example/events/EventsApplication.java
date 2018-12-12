@@ -23,7 +23,7 @@ public class EventsApplication implements CommandLineRunner {
 
         user.setName("Bill");
         user.setEmail("bill@gmail.com");
-        user.setId("1");
+        user.setId(new Long(1));
 
 
 
