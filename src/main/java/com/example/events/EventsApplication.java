@@ -1,5 +1,6 @@
 package com.example.events;
 
+import com.example.events.model.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -17,6 +18,15 @@ public class EventsApplication implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-        sender.send("topic1","Spring Kafka Producer and Consumer Example");
+
+        UserDTO user = new UserDTO();
+
+        user.setName("Bill");
+        user.setEmail("bill@gmail.com");
+        user.setId("1");
+
+
+
+        sender.send("topic1",user);
     }
 }
