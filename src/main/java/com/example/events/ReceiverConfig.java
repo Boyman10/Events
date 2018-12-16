@@ -1,5 +1,6 @@
 package com.example.events;
 
+import com.example.events.model.User;
 import com.example.events.model.UserDTO;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -37,14 +38,14 @@ public class ReceiverConfig {
     }
 
     @Bean
-    public ConsumerFactory<String, UserDTO> consumerFactory() {
+    public ConsumerFactory<String, User> consumerFactory() {
         return new DefaultKafkaConsumerFactory<>(consumerConfigs(), new StringDeserializer(),
-                new JsonDeserializer<>(UserDTO.class));
+                new JsonDeserializer<>(User.class));
     }
 
     @Bean
-    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, UserDTO>> kafkaListenerContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, UserDTO> factory = new ConcurrentKafkaListenerContainerFactory<>();
+    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, User>> kafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, User> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
         return factory;
     }
